@@ -1,0 +1,74 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "storageAccount_splunkStorageAccount_name": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Storage Account Name"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "East us",
+      "allowedValues": [
+        "Brazil South",
+        "East Asia",
+        "East US",
+        "Japan East",
+        "Japan West",
+        "North Central US",
+        "North Europe",
+        "South Central US",
+        "West Europe",
+        "West US",
+        "Southeast Asia",
+        "Central US",
+        "East US 2"
+      ],
+      "metadata": {
+        "description": "Storage Account Deployment Location"
+      }
+    },
+    "tag": {
+      "type": "object",
+      "defaultValue": {
+        "key1": "Storage Account",
+        "value1": "splunk"
+      },
+      "metadata": {
+        "description": "Tag Values"
+      }
+    },
+    "storageAccountType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "metadata": {
+        "description": "Stoarge Account Type"
+      }
+    }
+  },
+  "variables": {
+    "storageApiVersion":"2016-01-01"
+  },
+  "resources": [
+    {
+      "comments": "Storage Account Resource",
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[parameters('storageAccount_splunkStorageAccount_name')]",
+      "apiVersion": "[variables('storageApiVersion')]",
+      "location": "[parameters('location')]",
+      "sku": {
+          "name": "[parameters('storageAccountType')]",
+          "tier":"standard"
+      },
+     "kind": "Storage",
+      "tags": {
+        "[parameters('tag').key1]": "[parameters('tag').value1]"
+      },
+      "properties": {
+     }
+    }
+  ]
+}
