@@ -36,6 +36,7 @@
       "defaultValue": {
         "key1": "publicIP",
         "value1": "splunk"
+      }
       },
       "metadata": {
         "description": "Tag Values"
@@ -47,7 +48,7 @@
       "metadata": {
         "description": "Public IP DNS Prefix"
       }
-    }
+    },
     "networkApiVersion": {
       "type": "string",
       "defaultValue": "2016-03-30",
