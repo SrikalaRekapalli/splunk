@@ -24,12 +24,19 @@
         "description": "Virtual Network and Subnets Deployment Location"
       }
     },
-    "virtualNetworks_splunkVnet_name": {
+   "virtualNetworkName": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
         "description": "Virtual Network Name"
       }
+    },
+"networkApiVersion":{
+"type":"string",
+"defaultValue":"2016-03-30",
+"metaData":{
+  "description":"API Version for the Network Resources"
+}
     },
     "tag": {
       "type": "object",
@@ -77,15 +84,13 @@
       }
     }
   },
-  "variables": {
-    "networkApiVersion":"2016-03-30"
-  },
+  "variables": {},
   "resources": [
     {
       "comments": "Virtual Network and Subnet Resource",
-      "apiVersion": "[variables('networkApiVersion')]",
+      "apiVersion": "[parameters('networkApiVersion')]",
       "type": "Microsoft.Network/virtualNetworks",
-      "name": "[parameters('virtualNetworks_splunkVnet_name')]",
+      "name": "[parameters('virtualNetworkName')]",
       "location": "[parameters('location')]",
       "tags": {
         "[parameters('tag').key1]": "[parameters('tag').value1]"
