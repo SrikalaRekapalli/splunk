@@ -1,0 +1,116 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "East us",
+      "allowedValues": [
+        "Brazil South",
+        "East Asia",
+        "East US",
+        "Japan East",
+        "Japan West",
+        "North Central US",
+        "North Europe",
+        "South Central US",
+        "West Europe",
+        "West US",
+        "Southeast Asia",
+        "Central US",
+        "East US 2"
+      ],
+      "metadata": {
+        "description": "Virtual Network and Subnets Deployment Location"
+      }
+    },
+    "virtualNetworks_splunkVnet_name": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Virtual Network Name"
+      }
+    },
+    "tag": {
+      "type": "object",
+      "defaultValue": {
+        "key1": "virtual network",
+        "value1": "splunk"
+      },
+      "metadata": {
+        "description": "Tag Values"
+      }
+    },
+    "vnetAddressPrefix": {
+      "type": "string",
+      "defaultValue": "10.2.0.0/16",
+      "metadata": {
+        "description": "Virtual Network Address Prefix"
+      }
+    },
+    "subnet1Name": {
+      "type": "string",
+      "defaultValue": "shsubnet",
+      "metadata": {
+        "description": " search head SubnetName"
+      }
+    },
+    "subnet1Prefix": {
+      "type": "string",
+      "defaultValue": "10.2.0.0/24",
+      "metadata": {
+        "description": "Subnet1 Address Prefix"
+      }
+    },
+    "subnet2Name": {
+      "type": "string",
+      "defaultValue": "idxsubnet",
+      "metadata": {
+        "description": " indexer SubnetName"
+      }
+    },
+    "subnet2Prefix": {
+      "type": "string",
+      "defaultValue": "10.2.1.0/24",
+      "metadata": {
+        "description": "Subnet2 Address Prefix"
+      }
+    }
+  },
+  "variables": {
+    "networkApiVersion":"2016-03-30"
+  },
+  "resources": [
+    {
+      "comments": "Virtual Network and Subnet Resource",
+      "apiVersion": "[variables('networkApiVersion')]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[parameters('virtualNetworks_splunkVnet_name')]",
+      "location": "[parameters('location')]",
+      "tags": {
+        "[parameters('tag').key1]": "[parameters('tag').value1]"
+      },
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('vnetAddressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[parameters('subnet1Name')]",
+            "properties": {
+              "addressPrefix": "[parameters('subnet1Prefix')]"
+            }
+          },
+            {
+              "name": "[parameters('subnet2Name')]",
+              "properties": {
+                "addressPrefix": "[parameters('subnet2Prefix')]"
+              }
+          }
+        ]
+      }
+    }
+  ]
+}
