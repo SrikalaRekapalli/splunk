@@ -1,0 +1,74 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "East us",
+      "allowedValues": [
+        "Brazil South",
+        "East Asia",
+        "East US",
+        "Japan East",
+        "Japan West",
+        "North Central US",
+        "North Europe",
+        "South Central US",
+        "West Europe",
+        "West US",
+        "Southeast Asia",
+        "Central US",
+        "East US 2"
+      ],
+      "metadata": {
+        "description": "Public IP Deployment Location"
+      }
+    },
+    "publicIPAddresses_splunkIP_name": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Public IP Address Name"
+      }
+    },
+    "tag": {
+      "type": "object",
+      "defaultValue": {
+        "key1": "publicIP",
+        "value1": "splunk"
+      },
+      "metadata": {
+        "description": "Tag Values"
+      }
+    },
+    "publicIPdnsPrefix": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Public IP DNS Prefix"
+      }
+    }
+  },
+  "variables": { 
+    "networkApiVersion":"2016-03-30"
+  },
+  "resources": [
+    {
+      "comments": "Public IP Address Resource",
+      "apiVersion": "[variables('networkApiVersion')]",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[parameters('publicIPAddresses_splunkIP_name')]",
+      "location": "[parameters('location')]",
+      "tags": {
+        "[parameters('tag').key1]": "[parameters('tag').value1]"
+      },
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic",
+      "idleTimeoutInMinutes": 4,
+        "dnsSettings": {
+          "domainNameLabel": "[parameters('publicIPdnsPrefix')]"
+        }
+      }
+    }
+  ]
+}
