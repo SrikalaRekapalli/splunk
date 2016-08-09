@@ -24,9 +24,9 @@
         "description": "Public IP Deployment Location"
       }
     },
-    "publicIPAddresses_splunkIP_name": {
+    "publicIPAddressName": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": ",
       "metadata": {
         "description": "Public IP Address Name"
       }
@@ -41,23 +41,28 @@
         "description": "Tag Values"
       }
     },
-    "publicIPdnsPrefix": {
+    "dnsNameForPublicIP": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
         "description": "Public IP DNS Prefix"
       }
     }
+    "networkApiVersion": {
+      "type": "string",
+      "defaultValue": "2016-03-30",
+        "metadata": {
+        "description": "API Version for the Network Resources"
+      }
+    },
   },
-  "variables": { 
-    "networkApiVersion":"2016-03-30"
-  },
+  "variables": {},
   "resources": [
     {
       "comments": "Public IP Address Resource",
-      "apiVersion": "[variables('networkApiVersion')]",
+      "apiVersion": "[parameters('networkApiVersion')]",
       "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[parameters('publicIPAddresses_splunkIP_name')]",
+      "name": "[parameters('publicIPAddressName)]",
       "location": "[parameters('location')]",
       "tags": {
         "[parameters('tag').key1]": "[parameters('tag').value1]"
@@ -66,7 +71,7 @@
         "publicIPAllocationMethod": "Dynamic",
       "idleTimeoutInMinutes": 4,
         "dnsSettings": {
-          "domainNameLabel": "[parameters('publicIPdnsPrefix')]"
+          "domainNameLabel": "[parameters('dnsNameForPublicIP')]"
         }
       }
     }
