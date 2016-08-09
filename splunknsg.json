@@ -4,7 +4,7 @@
   "parameters": {
     "location": {
       "type": "string",
-      "defaultValue": "East us",
+      "defaultValue": "East US",
       "allowedValues": [
         "Brazil South",
         "East Asia",
@@ -31,6 +31,27 @@
         "description": "Network Security Group Name"
       }
     },
+  "networkApiVersion":{
+"type":"string",
+"defaultValue":"2016-03-30",
+"metaData":{
+  "description":"API Version for the Network Resources"
+}
+    },
+    "sshFrom": {
+      "type": "string",
+      "defaultValue": "0.0.0.0/0",
+      "metadata": {
+        "description": "CIDR block from which SSH access is allowed (default is ssh access from anywhere)"
+      }
+    },
+    "forwardedDataFrom": {
+      "type": "string",
+      "defaultValue": "0.0.0.0/0",
+      "metadata": {
+        "description": "CIDR block from which forwarded data is allowed (default is data can be received from anywhere)"
+      }
+    },
     "tag": {
       "type": "object",
       "defaultValue": {
@@ -42,15 +63,11 @@
       }
     }
   },
-  "variables": {
-    "networkApiVersion":"2016-03-30",
-     "sshFrom":"0.0.0.0/0",
-      "forwardedDataFrom":"0.0.0.0/0"
-  },
+  "variables": {},
   "resources": [
     {
       "comments": "Network Security Group Resource",
-      "apiVersion": "[variables('networkApiVersion')]",
+      "apiVersion": "[parameters('networkApiVersion')]",
       "type": "Microsoft.Network/networkSecurityGroups",
       "name": "[parameters('networkSecurityGroupName')]",
       "location": "[parameters('location')]",
@@ -66,7 +83,7 @@
                         "protocol": "Tcp",
                         "sourcePortRange": "*",
                         "destinationPortRange": "22",
-                        "sourceAddressPrefix": "[variables('sshFrom')]",
+                        "sourceAddressPrefix": "[parameters('sshFrom')]",
                         "destinationAddressPrefix": "*",
                         "access": "Allow",
                         "priority": 100,
@@ -122,7 +139,7 @@
                         "protocol": "Tcp",
                         "sourcePortRange": "*",
                         "destinationPortRange": "9997",
-                        "sourceAddressPrefix": "[variables('forwardedDatafrom')]",
+                        "sourceAddressPrefix": "[parameters('forwardedDatafrom')]",
                         "destinationAddressPrefix": "*",
                         "access": "Allow",
                         "priority": 140,
