@@ -36,7 +36,6 @@
       "defaultValue": {
         "key1": "publicIP",
         "value1": "splunk"
-      }
       },
       "metadata": {
         "description": "Tag Values"
@@ -55,15 +54,16 @@
         "metadata": {
         "description": "API Version for the Network Resources"
       }
-    },
+    }
   },
+
   "variables": {},
   "resources": [
     {
       "comments": "Public IP Address Resource",
       "apiVersion": "[parameters('networkApiVersion')]",
       "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[parameters('publicIPAddressName)]",
+      "name": "[parameters('publicIPAddressName')]",
       "location": "[parameters('location')]",
       "tags": {
         "[parameters('tag').key1]": "[parameters('tag').value1]"
