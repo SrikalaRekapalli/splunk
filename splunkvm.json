@@ -239,16 +239,18 @@
                             "caching": "ReadOnly",
                             "diskSizeGB": 1023
                         }
-                    ]
-                },
+                    ],
+                
         "networkProfile": {
           "networkInterfaces": [
             {
               "id": "[resourceId('Microsoft.Network/networkInterfaces',parameters('networkInterfacesName'))]"
             }
+        
           ]
         }
-      }
-    
+    }  
+    }
   ]
 }
+
