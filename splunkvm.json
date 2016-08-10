@@ -1,0 +1,254 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "East US",
+      "allowedValues": [
+        "Brazil South",
+        "East Asia",
+        "East US",
+        "Japan East",
+        "Japan West",
+        "North Central US",
+        "North Europe",
+        "South Central US",
+        "West Europe",
+        "West US",
+        "Southeast Asia",
+        "Central US",
+        "East US 2"
+      ],
+      "metadata": {
+        "description": "Network Security Group Deployment Location"
+      }
+    },
+    "tag": {
+      "type": "object",
+      "defaultValue": {
+        "key1": "vm",
+        "value1": "splunk"
+      },
+      "metadata": {
+        "description": "Tag Values"
+      }
+    },
+    "virtualMachineName": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Virtual Machine Name"
+      }
+    },
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_D12_v2",
+      "metadata": {
+        "description": "Virtual Machine Size"
+      }
+    },
+    "adminUsername": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Admin Username of Virtual Machine to SSH or RDP"
+      }
+      
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Admin Password of Virtual Machine to SSH or RDP"
+      }
+    },
+    "computeApiVersion": {
+      "type": "string",
+      "defaultValue": "2015-06-15",
+      "metadata": {
+        "description": "API Version for the Network Resources"
+      }
+    },
+    "imagePublisher": {
+      "type": "string",
+      "defaultValue": "splunk",
+      "metadata": {
+        "description": "Virtual Machine Image Publisher"
+      }
+    },
+    "imageOffer": {
+      "type": "string",
+      "defaultValue": "splunk-enterprise-base-image",
+      "metadata": {
+        "description": "Virtual Machine Image Offer"
+      }
+    },
+    "imageSKU": {
+      "type": "string",
+      "defaultValue": "splunk-on-ubuntu-14-04-lts",
+      "metadata": {
+        "description": "Virtual Machine Image SKU"
+      }
+    },
+    "imageVersion": {
+      "type": "string",
+      "defaultValue": "1.0.9",
+      "metadata": {
+        "description": "Virtual Machine Image Version"
+      }
+    },
+    "storageAccountName": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Storage Account Name"
+      }
+    },
+    "networkInterfacesName": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Network Security Group Name"
+      }
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "comments": "Virtual Machine Resource",
+      "apiVersion": "[parameters('computeApiVersion')]",
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[parameters('virtualMachineName')]",
+      "location": "[parameters('location')]",
+      "plan": {
+                "name": "[parameters('imageSKU')]",
+                "product": "[parameters('imageOffer')]",
+                "publisher": "[parameters('imagePublisher')]"
+            },
+      "tags": {
+        "[parameters('tag').key1]": "[parameters('tag').value1]"
+      },
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('vmSize')]"
+        },
+        "osProfile": {
+          "computerName": "[parameters('virtualMachineName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "linuxConfiguration": {
+                        "disablePasswordAuthentication": false
+                    },
+                    "secrets": [], 
+          "adminPassword": "[parameters('adminPassword')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "[parameters('imagePublisher')]",
+            "offer": "[parameters('imageOffer')]",
+            "sku": "[parameters('imageSKU')]",
+            "version": "[parameters('imageVersion')]"
+          },
+          "osDisk": {
+            "name": "[concat(parameters('virtualMachineName'),'-osDisk')]",
+            "vhd": {
+              "uri": "[concat('https://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/',parameters('virtualMachineName'),'-osdisk.vhd')]"
+            },
+            "caching": "ReadWrite",
+            "createOption": "FromImage"
+          }
+        },
+        "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "datadisk1",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk1.vhd')]"
+                            },
+                            "caching": "ReadOnly",
+                            "diskSizeGB": 1023
+                        },
+                        {
+                            "lun": 1,
+                            "name": "datadisk2",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk2.vhd')]"
+                            },
+                            "caching": "ReadOnly",
+                            "diskSizeGB": 1023
+                        },
+                        {
+                            "lun": 2,
+                            "name": "datadisk3",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk3.vhd')]"
+                            },
+                            "caching": "ReadOnly",
+                            "diskSizeGB": 1023
+                        },
+                        {
+                            "lun": 3,
+                            "name": "datadisk4",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk4.vhd')]"
+                            },
+                            "caching": "ReadOnly",
+                            "diskSizeGB": 1023
+                        },
+                        {
+                            "lun": 4,
+                            "name": "datadisk5",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk5.vhd')]"
+                            },
+                            "caching": "ReadOnly",
+                            "diskSizeGB": 1023
+                        },
+                        {
+                            "lun": 5,
+                            "name": "datadisk6",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk6.vhd')]"
+                            },
+                            "caching": "ReadOnly",
+                            "diskSizeGB": 1023
+                        },
+                        {
+                            "lun": 6,
+                            "name": "datadisk7",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk7.vhd')]"
+                            },
+                            "caching": "ReadOnly",
+                            "diskSizeGB": 1023
+                        },
+                        {
+                            "lun": 7,
+                            "name": "datadisk8",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk8.vhd')]"
+                            },
+                            "caching": "ReadOnly",
+                            "diskSizeGB": 1023
+                        }
+                    ]
+                },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces',parameters('networkInterfacesName'))]"
+            }
+          ]
+        }
+      }
+    
+  ]
+}
