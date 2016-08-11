@@ -43,7 +43,7 @@
     },
     "standaloneVmName": {
       "type": "string",
-      "defaultValue": "vmName",
+      "defaultValue": "",
       "metadata": {
         "description": "Virtual Machine Name"
       }
