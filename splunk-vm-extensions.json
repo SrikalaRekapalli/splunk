@@ -41,7 +41,7 @@
         "description": "Tag Values"
       }
     },
-    "standaloneVirtualMachineName": {
+    "virtualMachineName": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
@@ -83,7 +83,7 @@
   "resources": [
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('standaloneVirtualMachineName'),'/', parameters('vmExtensionName'))]",
+      "name": "[concat(parameters('virtualMachineName'),'/', parameters('vmExtensionName'))]",
       "apiVersion": "[parameters('computeApiVersion')]",
       "location": "[parameters('location')]",
       "tags": {
