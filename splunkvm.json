@@ -34,7 +34,7 @@
         "description": "Tag Values"
       }
     },
-    "virtualMachineName": {
+    "standaloneVirtualMachineName": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
@@ -119,7 +119,7 @@
       "comments": "Virtual Machine Resource",
       "apiVersion": "[parameters('computeApiVersion')]",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[parameters('virtualMachineName')]",
+      "name": "[parameters('standaloneVirtualMachineName')]",
       "location": "[parameters('location')]",
       "plan": {
                 "name": "[parameters('imageSKU')]",
@@ -134,7 +134,7 @@
           "vmSize": "[parameters('vmSize')]"
         },
         "osProfile": {
-          "computerName": "[parameters('virtualMachineName')]",
+          "computerName": "[parameters('standaloneVirtualMachineName')]",
           "adminUsername": "[parameters('adminUsername')]",
           "linuxConfiguration": {
                         "disablePasswordAuthentication": false
@@ -150,9 +150,9 @@
             "version": "[parameters('imageVersion')]"
           },
           "osDisk": {
-            "name": "[concat(parameters('virtualMachineName'),'-osDisk')]",
+            "name": "[concat(parameters('standaloneVirtualMachineName'),'-osDisk')]",
             "vhd": {
-              "uri": "[concat('https://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/',parameters('virtualMachineName'),'-osdisk.vhd')]"
+              "uri": "[concat('https://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/',parameters('standaloneVirtualMachineName'),'-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -164,7 +164,7 @@
                             "name": "datadisk1",
                             "createOption": "Empty",
                             "vhd": {
-                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk1.vhd')]"
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('standaloneVirtualMachineName'),'-datadisk1.vhd')]"
                             },
                             "caching": "ReadOnly",
                             "diskSizeGB": 1023
@@ -174,7 +174,7 @@
                             "name": "datadisk2",
                             "createOption": "Empty",
                             "vhd": {
-                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk2.vhd')]"
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('standaloneVirtualMachineName'),'-datadisk2.vhd')]"
                             },
                             "caching": "ReadOnly",
                             "diskSizeGB": 1023
@@ -184,7 +184,7 @@
                             "name": "datadisk3",
                             "createOption": "Empty",
                             "vhd": {
-                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk3.vhd')]"
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('standaloneVirtualMachineName'),'-datadisk3.vhd')]"
                             },
                             "caching": "ReadOnly",
                             "diskSizeGB": 1023
@@ -194,7 +194,7 @@
                             "name": "datadisk4",
                             "createOption": "Empty",
                             "vhd": {
-                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk4.vhd')]"
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('standaloneVirtualMachineName'),'-datadisk4.vhd')]"
                             },
                             "caching": "ReadOnly",
                             "diskSizeGB": 1023
@@ -204,7 +204,7 @@
                             "name": "datadisk5",
                             "createOption": "Empty",
                             "vhd": {
-                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk5.vhd')]"
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('standaloneVirtualMachineName'),'-datadisk5.vhd')]"
                             },
                             "caching": "ReadOnly",
                             "diskSizeGB": 1023
@@ -214,7 +214,7 @@
                             "name": "datadisk6",
                             "createOption": "Empty",
                             "vhd": {
-                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk6.vhd')]"
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('standaloneVirtualMachineName'),'-datadisk6.vhd')]"
                             },
                             "caching": "ReadOnly",
                             "diskSizeGB": 1023
@@ -224,7 +224,7 @@
                             "name": "datadisk7",
                             "createOption": "Empty",
                             "vhd": {
-                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk7.vhd')]"
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('standaloneVirtualMachineName'),'-datadisk7.vhd')]"
                             },
                             "caching": "ReadOnly",
                             "diskSizeGB": 1023
@@ -234,7 +234,7 @@
                             "name": "datadisk8",
                             "createOption": "Empty",
                             "vhd": {
-                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-datadisk8.vhd')]"
+                                "uri": "[concat('http', '://', parameters('storageAccountName'), '.blob.core.windows.net/vhds/', parameters('standaloneVirtualMachineName'),'-datadisk8.vhd')]"
                             },
                             "caching": "ReadOnly",
                             "diskSizeGB": 1023
