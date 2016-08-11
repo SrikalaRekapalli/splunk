@@ -64,13 +64,13 @@
     },
     "splunkServerRole":{
       "type":"string",
-      "defualtValue":"splunk_server",
+      "defaultValue":"splunk_server",
       "metaData":{
         "description":"splunk server"
       }
     },
     "splunkAdminPassword":{
-      "type":"string",
+      "type":"securestring",
       "defaultValue":"",
       "metaData":{
         "description":"Splunk admin password"
