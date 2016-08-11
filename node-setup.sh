@@ -174,5 +174,4 @@ chef-client -z -c /etc/chef/client.rb -j /etc/chef/node.json
 rm -rf /etc/chef/repo
 
 log "Finished node-setup on ${HOSTNAME} with role ${NODE_ROLE}"
-
 exit 0
