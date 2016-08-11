@@ -28,7 +28,7 @@
       "type": "object",
       "defaultValue": {
         "key1": "vm",
-        "value1": "splunk"
+        "value1":"splunk"
       },
       "metadata": {
         "description": "Tag Values"
