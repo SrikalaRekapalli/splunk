@@ -41,7 +41,7 @@
         "description": "Tag Values"
       }
     },
-    "standaloneVmName": {
+    "standaloneVirtualMachineName": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
@@ -65,7 +65,7 @@
     "splunkServerRole":{
       "type":"string",
       "defualtValue":"splunk_server",
-      "meta Data":{
+      "metaData":{
         "description":"splunk server"
       }
     },
@@ -83,7 +83,7 @@
   "resources": [
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('standaloneVmName'),'/', parameters('vmExtensionName'))]",
+      "name": "[concat(parameters('standaloneVirtualMachineName'),'/', parameters('vmExtensionName'))]",
       "apiVersion": "[parameters('computeApiVersion')]",
       "location": "[parameters('location')]",
       "tags": {
