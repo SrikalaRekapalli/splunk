@@ -57,7 +57,7 @@
     },
     "customScriptUrl": {
       "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/c539048926c03a927ee5f83f14d5c1a8371dedb2/splunk-on-ubuntu/scripts/node-setup.sh",
+      "defaultValue": "https://raw.githubusercontent.com/SrikalaRekapalli/splunk/master/splunk-vm-extensions.json",
       "metadata": {
         "description": "Custom Script URL"
       }
