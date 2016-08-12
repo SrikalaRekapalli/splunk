@@ -98,7 +98,7 @@
           "fileUris": [
             "[parameters('customScriptUrl')]"
           ],
-          "commandToExecute": "[concat('bash node-setup.sh', ' -r ', parameters('splunkServerRole'),variables('clusterMasterIp'),' -p ', variables('singleQuote'), parameters('splunkAdminPassword'), variables('singleQuote'))]"
+          "commandToExecute": "[concat('bash node-setup.sh', ' -r ', parameters('splunkServerRole'), ' -c ',variables('clusterMasterIp'),' -p ', variables('singleQuote'), parameters('splunkAdminPassword'), variables('singleQuote'))]"
 
         }
       }
