@@ -57,7 +57,7 @@
     },
     "customScriptUrl": {
       "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/SrikalaRekapalli/splunk/master/splunk-vm-extensions.json",
+      "defaultValue": "https://raw.githubusercontent.com/SrikalaRekapalli/splunk/master/node-setup.sh",
       "metadata": {
         "description": "Custom Script URL"
       }
