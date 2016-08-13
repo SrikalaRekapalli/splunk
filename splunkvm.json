@@ -34,7 +34,7 @@
         "description": "Tag Values"
       }
     },
-    "VirtualMachineName": {
+    "virtualMachineName": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
@@ -100,7 +100,6 @@
     },
     "storageAccountName": {
       "type": "string",
-      "defaultValue": "",
       "metadata": {
         "description": "Storage Account Name"
       }
@@ -125,7 +124,7 @@
       "comments": "Virtual Machine Resource",
       "apiVersion": "[parameters('computeApiVersion')]",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[parameters('VirtualMachineName')]",
+      "name": "[parameters('virtualMachineName')]",
       "location": "[parameters('location')]",
       "plan": {
             "name": "[parameters('imageSKU')]",
@@ -257,3 +256,4 @@
         }
       ]
 }
+
