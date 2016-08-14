@@ -78,8 +78,6 @@
     }
   },
   "variables": {
-    "singleQuote":"'",
-
     "osSettings": {
       "scripts": [
         "[concat(parameters('customScriptUrl'),'node-setup.sh')]",
@@ -104,7 +102,7 @@
           "fileUris": "[variables('osSettings').scripts]"
         },
          "protectedSettings": {
-              "commandToExecute": "[concat('bash node-setup.sh', ' -r ', parameters('splunkServerRole'), ' -p ', variables('singleQuote'), parameters('splunkAdminPassword'), variables('singleQuote'))]"
+              "commandToExecute": "[concat('bash node-setup.sh', ' -r ', parameters('splunkServerRole'), ' -p ',parameters('splunkAdminPassword'))]"
           }
         }
   }
