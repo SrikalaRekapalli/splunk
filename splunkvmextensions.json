@@ -105,7 +105,7 @@
           "fileUris": "[variables('osSettings').scripts]"
         },
          "protectedSettings": {
-             "commandToExecute": "[concat('bash node-setup.sh', ' -r ', variables('splunkServerRole'), ' -c ', variables('clusterMasterIp'), ' -u ',  ' -p ', variables('singleQuote'), parameters('splunkAdminPassword'), variables('singleQuote'))]"
+             "commandToExecute": "[concat('bash node-setup.sh', ' -r ', variables('splunkServerRole'), ' -c ', variables('clusterMasterIp'), ' -p ', variables('singleQuote'), parameters('splunkAdminPassword'), variables('singleQuote'))]"
 
 
           }
