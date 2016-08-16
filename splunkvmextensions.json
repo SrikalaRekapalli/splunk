@@ -68,11 +68,17 @@
       "metaData":{
         "description":"Splunk admin password"
       }
-    }
-  },
+    },
+    "splunkServerRole":{
+      "type":"string",
+      "defaultValue":"",
+      "metaData":{
+        "description":"splunk server role"
+      }
+    }  
+    },
   "variables": {
     "singleQuote": "'",
-    "splunkServerRole":"splunk_server",
     "clusterMasterIp":"NA",
     "osSettings": {
       "scripts": [
@@ -98,7 +104,7 @@
           "fileUris": "[variables('osSettings').scripts]"
         },
          "protectedSettings": {
-             "commandToExecute": "[concat('bash node-setup.sh', ' -r ', variables('splunkServerRole'), ' -c ', variables('clusterMasterIp'), ' -p ', variables('singleQuote'), parameters('splunkAdminPassword'), variables('singleQuote'))]"
+             "commandToExecute": "[concat('bash node-setup.sh', ' -r ', parameters('splunkServerRole'), ' -c ', variables('clusterMasterIp'), ' -p ', variables('singleQuote'), parameters('splunkAdminPassword'), variables('singleQuote'))]"
 
 
           }
