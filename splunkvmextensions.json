@@ -62,13 +62,6 @@
         "description": "Custom Script URL"
       }
     },
-    "splunkServerRole":{
-      "type":"string",
-      "defaultValue":"splunk_server",
-      "metaData":{
-        "description":"splunk server"
-      }
-    },
     "splunkAdminPassword":{
       "type":"securestring",
       "defaultValue":"",
