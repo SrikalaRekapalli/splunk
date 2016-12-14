@@ -19,8 +19,9 @@ wget -O splunkforwarder-6.5.1-f74036626f0c-Linux-x86_64.tgz 'https://www.splunk.
 
 #extract the files from zip folder
 tar xvzf splunkforwarder-6.5.1-f74036626f0c-Linux-x86_64.tgz
+sleep 30
 #move the splunk to opt folder
-mv splunkpkg/splunkforwarder /opt
+mv /var/lib/waagent/Microsoft.OSTCExtensions.CustomScriptForLinux-1.5.2.1/download/0/splunkpkg/splunkforwarder /opt/
 
 cd /opt/splunkforwarder/bin
 
