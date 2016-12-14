@@ -7,8 +7,8 @@ clientvmname=$3
 
 #splunk package folder
 
-mkdir /home/$clientvmname/splunkpkg
-cd /home/$clientvmname/splunkpkg
+mkdir splunkpkg
+cd splunkpkg
 
 #dowload the latest splunk package 
 
@@ -18,13 +18,11 @@ wget -O splunkforwarder-6.5.1-f74036626f0c-Linux-x86_64.tgz 'https://www.splunk.
 tar xvzf splunkforwarder-6.5.1-f74036626f0c-Linux-x86_64.tgz
 
 #move the splunk to opt folder
-mv /home/$clientvmname/splunkpkg/splunkforwarder /opt
+mv /splunkpkg/splunkforwarder /opt
 
 cd /opt/splunkforwarder/bin
 
-#./splunk start --accept-license
-
-/opt/splunk/bin/splunk enable listen 9997
+./splunk start --accept-license
  
 /opt/splunkforwarder/bin/splunk add forward-server $splunkserverip:9997
 
