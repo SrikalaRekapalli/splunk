@@ -1,38 +1,35 @@
-# This script will setup the splunk forwarder 
+######################################################################################################
+#	File         : settingup-splunk-forwader.sh
+#	Description  : This script will install splunk universal forwader
+#   Usage        : sh filename.sh splunkserverip logmonitorfolder clientvmname
+######################################################################################################
 
-#ip address of splunk server
-splunkserverip=$1
-logmonitorfolder=$2
-clientvmname=$3
+#!/bin/bash
+
+clientvmname=$1
 
 #splunk package folder
 
-#mkdir /home/$clientvmname/splunkpkg
-pwd 
-mkdir splunkpkg
-#cd /home/$clientvmname/splunkpkg
-cd splunkpkg
+mkdir /home/$clientvmname/splunkpkg
+cd /home/$clientvmname/splunkpkg
 
 #dowload the latest splunk package 
 
 wget -O splunkforwarder-6.5.1-f74036626f0c-Linux-x86_64.tgz 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=6.5.1&product=universalforwarder&filename=splunkforwarder-6.5.1-f74036626f0c-Linux-x86_64.tgz&wget=true' 
 
+sleep 40
 #extract the files from zip folder
 tar xvzf splunkforwarder-6.5.1-f74036626f0c-Linux-x86_64.tgz
-sleep 30
+
+
 #move the splunk to opt folder
-mv /var/lib/waagent/Microsoft.OSTCExtensions.CustomScriptForLinux-1.5.2.1/download/0/splunkpkg/splunkforwarder /opt/
+mv /home/$clientvmname/splunkpkg/splunkforwarder /opt/
 
 cd /opt/splunkforwarder/bin
 
-./splunk start --accept-license
+./splunk start 
 
-/opt/splunkforwarder/bin/splunk add forward-server $splunkserverip:9997
+#/opt/splunkforwarder/bin/splunk add forward-server $splunkserverip:9997
 
-./splunk add monitor $logmonitorfolder
-
-cd /opt/splunkforwarder/bin
-
-./splunk restart
-
+#./splunk add monitor $logmonitorfolder
 
