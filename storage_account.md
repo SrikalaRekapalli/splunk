@@ -207,4 +207,3 @@ Lab for Object Storage. In this lab, you created Object Storage bucket,
 uploaded a file to the bucket, created a Pre-Authenticated link to share the file.
 Feel free to continue exploring or start a new lab.
 Thank you for taking this training lab!
-
