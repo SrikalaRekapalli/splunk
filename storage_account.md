@@ -16,7 +16,6 @@ Welcome to the Cloud Storage (Object) self-paced lab from Oracle!
 
 **How to use the lab interface:**
 
-[Click here to open the video in a new tab.](https://www.youtube.com/watch?v=FJRnrNMrj3Y)
 
 Click **Start** to get started!
 
@@ -54,4 +53,4 @@ Cloud Tenant Name
 
 3) Do NOT use compartment name and other data from 
 screen shots.Only use  data(including compartment name) 
-provided in the content section of the lab
+provided in the content section of the lab.
