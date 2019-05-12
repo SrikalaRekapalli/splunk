@@ -43,6 +43,8 @@ can be enlarged by Clicking on them
 
 2) Every User MUST keep below credentials handy.
 
+3) fuawtgfuwaefoiwy
+
 User Name
 
 Password
@@ -54,8 +56,3 @@ Cloud Tenant Name
 3) Do NOT use compartment name and other data from 
 screen shots.Only use  data(including compartment name) 
 provided in the content section of the lab
-
-
-
-
- 
