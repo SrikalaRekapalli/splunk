@@ -36,8 +36,6 @@ Click **Start** to get started!
 
 ## practice 1: Log In to OCI Console
 
-**Before you Begin:**
-
 1) All screen shots are examples ONLY. Screen shots
 can be enlarged by Clicking on them
 
