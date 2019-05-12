@@ -10,19 +10,11 @@
 
 [practice 1: Log In to OCI Console](#practice-1-log-in-to-oci-console)
 
-[practice 2: Create Object Storage Bucket](#practice-2-create-object-storage-bucket)
-
-[Practice 3: Upload an Object and Provide Access to the Object](#practice-3-upload-an-object-and-Provide-access-to-the-object)
-
-[Practice 4: Delete the Resources](#practice-4-delete-the-resources)
-
 ## Overview:
 
 Welcome to the Cloud Storage (Object) self-paced lab from Oracle!
 
 **How to use the lab interface:**
- 
-[Click here to open the video in a new tab.](https://www.youtube.com/watch?v=FJRnrNMrj3Y)
 
 Click **Start** to get started!
 
@@ -61,8 +53,3 @@ Cloud Tenant Name
 3) Do NOT use compartment name and other data from 
 screen shots.Only use  data(including compartment name) 
 provided in the content section of the lab
-
-
-
-
- 
